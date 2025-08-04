@@ -1,0 +1,112 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>{% trans "CodeHub - Inovação Digital com Josemar Neves" %}</title>{% endblock %}
+
+    <!-- SEO -->
+    <meta name="description" content="{% trans 'CodeHub é uma plataforma criada por Josemar Neves para ensinar programação, criar sites e oferecer soluções digitais com Python, Django, Java e mais.' %}">
+    <meta name="keywords" content="{% trans 'Brasil, CodiHub, Programação, Python, Django, Java, Desenvolvimento Web, Criar Site, CodeHub Angola, CodeHub Brasil, CodeHub Portugal, CodiHub Estados Unidos, Design Gráfico, Site CodiHub, CodeHub Django, Josemar Neves, HTML, CSS, JavaScript, Aplicativos, Web Design, Tecnologia, Projetos Web, Inovação Digital, Freelancer Web, Frontend, Backend, Software, Criar Aplicativos, Aprender Programar, Criar seu site, Jogos Online, Marketing Digital' %}">
+    <meta name="author" content="Josemar Neves">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% trans 'CodeHub - Soluções Digitais com Josemar Neves' %}">
+    <meta property="og:description" content="{% trans 'Aprenda a programar com Python, Django, Java e crie seus próprios sites com a CodeHub.' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://code-lai1.onrender.com/">
+    <meta property="og:image" content="https://code-lai1.onrender.com/static/img/logo.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% trans 'CodeHub - Programação com Josemar Neves' %}">
+    <meta name="twitter:description" content="{% trans 'Plataforma para aprender programação, criar sites e muito mais com Python, Django e Java.' %}">
+    <meta name="twitter:image" content="https://code-lai1.onrender.com/static/img/logo.png">
+
+    <meta name="google-adsense-account" content="ca-pub-1687261973938075">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1687261973938075"
+     crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'css/paginas/estilo.css' %}">
+</head>
+<body>
+    {% block header %}
+    <header>
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding: 20px;">
+            <div style="flex: 1;">
+                <img src="{% static 'img/logo.png' %}" alt="CodeHub Logo" style="height: 90px;">
+            </div>
+            <div style="flex: 2; text-align: center;">
+                <h1 style="margin: 0;">{% trans "Bem-vindo à CodeHub!" %}</h1>
+            </div>
+            <div style="flex: 1;"></div>
+        </div>
+
+        <nav>
+            <ul style="display: flex; gap: 10px; flex-wrap: wrap; list-style: none; padding-left: 5px 0; justify-content: center;">
+                <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'sobre' %}">{% trans "Sobre" %}</a></li>
+                <li><a href="{% url 'servicos' %}">{% trans "Serviços" %}</a></li>
+                <li><a href="{% url 'contato' %}">{% trans "Contato" %}</a></li>
+                <li><a href="{% url 'info' %}">{% trans "Informações" %}</a></li>
+                <li><a href="{% url 'jogos' %}">{% trans "Jogos" %}</a></li>
+                <li><a href="{% url 'feedback' %}">{% trans "Feedback" %}</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% endblock %}
+
+    <!-- Aviso de Cookies -->
+    <div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background-color: #222; color: white; text-align: center; padding: 10px; z-index: 9999; display: none;">
+        <span>
+            {% trans "Este site usa cookies para melhorar a sua experiência. Ao continuar navegando, você concorda com nossa" %}
+            <a href="{% url 'privacidade' %}" style="color: #0af;">{% trans "Política de Privacidade" %}</a>.
+        </span>
+        <button onclick="aceitarCookies()" style="margin-left: 15px; background-color: #0af; border: none; padding: 5px 10px; color: white;">
+            {% trans "Aceitar" %}
+        </button>
+    </div>
+
+    <script>
+        function aceitarCookies() {
+            localStorage.setItem('cookies_aceitos', 'sim');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function () {
+            if (localStorage.getItem('cookies_aceitos') !== 'sim') {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        };
+    </script>
+
+    {% block main %}
+    <main>
+        <div class="container">
+            <h2>{% trans "Conteúdo principal aqui" %}</h2>
+        </div>
+    </main>
+    {% endblock %}
+
+    {% block footer %}
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CodeHub | {% trans "Todos os direitos reservados." %}</p>
+            <nav>
+                <ul style="list-style: none; display: flex; gap: 15px; padding-left: 0;">
+                    <li><a href="{% url 'sobre' %}">{% trans "Sobre" %}</a></li>
+                    <li><a href="{% url 'termos' %}">{% trans "Termos de Uso" %}</a></li>
+                    <li><a href="{% url 'privacidade' %}">{% trans "Política de Privacidade" %}</a></li>
+                    <li><a href="{% url 'cookies' %}">{% trans "Política de Cookies" %}</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    {% endblock %}
+</body>
+</html>
