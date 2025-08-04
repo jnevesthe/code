@@ -8,12 +8,8 @@ class AcessoMiddleware(MiddlewareMixin):
         ip = self.get_client_ip(request)
         caminho = request.path
 
-        if not caminho.startswith('/admin/'):
-            agora = timezone.now()
-            limite_tempo = agora - timedelta(minutes=30)
-
-            if not Acesso.objects.filter(ip=ip, caminho=caminho, data_acesso__gte=limite_tempo).exists():
-                Acesso.objects.create(ip=ip, caminho=caminho)
+        if not Acesso.objects.filter(ip=ip, caminho=caminho, data_acesso__gte=limite_tempo).exists():
+            Acesso.objects.create(ip=ip, caminho=caminho)
 
     def get_client_ip(self, request):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
