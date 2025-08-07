@@ -35,7 +35,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'paginas.middleware.AcessoMiddleware'
+    'paginas.middleware.AcessoMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'codehub.urls'
@@ -115,4 +116,17 @@ EMAIL_HOST_PASSWORD = 'oyfh yvik hspl tbrz'
 
 # 🧪 Configurações extras opcionais
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Garante que os cookies só sejam enviados via HTTPS
+SESSION_COOKIE_SECURE = True  
+CSRF_COOKIE_SECURE = True  
+
+# Bloqueia acesso aos cookies via JavaScript (proteção contra XSS)
+SESSION_COOKIE_HTTPONLY = True  
+CSRF_COOKIE_HTTPONLY = True  
+
+# Define política SameSite (proteção contra CSRF)
+SESSION_COOKIE_SAMESITE = 'Lax'  # ou 'Strict'
+CSRF_COOKIE_SAMESITE = 'Lax'
+
 
