@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_wkmbk%v*8)f!)-817ut606$!6$$$@03x(1m%htutxz422u7$'
 
 DEBUG=True
-ALLOWED_HOSTS = ['*']  # ajuste depois para produção
+ALLOWED_HOSTS = ['code-lai1.onrender.com']  # ajuste depois para produção
 
 # 📦 Aplicações instaladas
 INSTALLED_APPS = [
