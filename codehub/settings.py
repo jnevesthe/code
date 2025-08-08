@@ -10,7 +10,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_wkmbk%v*8)f!)-817ut606$!6$$$@03x(1m%htutxz422u7$'
 
 DEBUG=True
-ALLOWED_HOSTS = ['code-lai1.onrender.com']  # ajuste depois para produção
+# settings.py
+
+ALLOWED_HOSTS = [
+    'localhost',               # Para rodar localmente
+    '127.0.0.1',                # Para rodar localmente
+    'code-lai1.onrender.com',   # Seu domínio no Render
+]
 
 # 📦 Aplicações instaladas
 INSTALLED_APPS = [
@@ -36,7 +42,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'paginas.middleware.AcessoMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'codehub.urls'
@@ -117,16 +122,15 @@ EMAIL_HOST_PASSWORD = 'oyfh yvik hspl tbrz'
 # 🧪 Configurações extras opcionais
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Garante que os cookies só sejam enviados via HTTPS
-SESSION_COOKIE_SECURE = True  
-CSRF_COOKIE_SECURE = True  
+# Cookies seguros
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_DOMAIN = "code-lai1.onrender.com"
+CSRF_COOKIE_DOMAIN = "code-lai1.onrender.com"
+SESSION_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_SAMESITE = "Lax"
 
-# Bloqueia acesso aos cookies via JavaScript (proteção contra XSS)
-SESSION_COOKIE_HTTPONLY = True  
-CSRF_COOKIE_HTTPONLY = True  
-
-# Define política SameSite (proteção contra CSRF)
-SESSION_COOKIE_SAMESITE = 'Lax'  # ou 'Strict'
-CSRF_COOKIE_SAMESITE = 'Lax'
-
-
+# Redirecionar para HTTPS
+SECURE_SSL_REDIRECT = True
